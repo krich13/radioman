@@ -1,9 +1,12 @@
 package ru.netology;
 
-public class radio {
+public class Radio {
     private int currentStation;
     private int maxStation = 9;
     private int minStation = 0;
+    private int currentVolume;
+    private int maxVolume = 10;
+    private int minVolume = 0;
 
     public int getCurrentStation() {
         return currentStation;
@@ -17,7 +20,8 @@ public class radio {
         return maxStation;
     }
 
-    public void setNextStation(int currentStation) { //может возвращаться к предыдущей станции
+    public void setNextStation() { //может возвращаться к предыдущей станции
+        int getcurrentStation;
         int newNextStation = 0;
         if (currentStation == maxStation) {
             newNextStation = minStation;
@@ -28,19 +32,18 @@ public class radio {
         this.currentStation = newNextStation;
     }
 
-
-    public void setPreviousStation(int currentStation) { //может возвращаться к предыдущей станции
-        {
-            int newPreviousStation = 0;
-            if (currentStation == minStation) {
-                newPreviousStation = maxStation;
-            }
-            if (currentStation > minStation) {
-                newPreviousStation = currentStation - 1;
-            }
-            this.currentStation = newPreviousStation;
-
+    public void setPreviousStation() { //может возвращаться к предыдущей станции
+        int getCurrentStation;
+        int getMaxStation;
+        int getMinStation;
+        int newPreviousStation = 0;
+        if (currentStation == minStation) {
+            newPreviousStation = maxStation;
         }
+        if (currentStation > minStation) {
+            newPreviousStation = currentStation - 1;
+        }
+        this.currentStation = newPreviousStation;
     }
 
     public void setStation(int newStation) {
@@ -52,10 +55,6 @@ public class radio {
         }
         this.currentStation = newStation;
     }
-
-    private int currentVolume;
-    private int maxVolume = 10;
-    private int minVolume = 0;
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -79,7 +78,10 @@ public class radio {
         this.currentVolume = newVolume;
     }
 
-    public void setIncreaseVolume(int currentVolume) { //можем увеличивать громкость до 10
+    public void setIncreaseVolume() { //можем увеличивать громкость до 10
+        int getCurrentVolume;
+        int getMaxVolume;
+        int getMinVolume;
         int newVolume = 0;
         if (currentVolume == maxVolume) {
             newVolume = maxVolume;
@@ -90,7 +92,10 @@ public class radio {
         this.currentVolume = newVolume;
     }
 
-    public void setDecreaseVolume(int currentVolume) { //можем уменьшать громкость до 0
+    public void setDecreaseVolume() { //можем уменьшать громкость до 0
+        int getCurrentVolume;
+        int getMaxVolume;
+        int getMinVolume;
         int newVolume = 0;
         if (currentVolume == minVolume) {
             newVolume = minVolume;
