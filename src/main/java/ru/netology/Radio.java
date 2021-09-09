@@ -34,8 +34,6 @@ public class Radio {
 
     public void setPreviousStation() { //может возвращаться к предыдущей станции
         int getCurrentStation;
-        int getMaxStation;
-        int getMinStation;
         int newPreviousStation = 0;
         if (currentStation == minStation) {
             newPreviousStation = maxStation;
