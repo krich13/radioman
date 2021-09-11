@@ -5,23 +5,62 @@ public class Radio {
     private int maxStation = 9;
     private int minStation = 0;
     private int currentVolume;
-    private int maxVolume = 10;
+    private int maxVolume = 100;
     private int minVolume = 0;
+    private int stationAmount = 10;
+
+    //конструктор с одним параметром (задаем сами, сколько станций хотим)
+    public Radio(int variableStationAmount) {
+        stationAmount = variableStationAmount;
+        maxStation = stationAmount - 1;
+    }
+
+    public Radio(int currentStation, int currentVolume, int variableStationAmount) {
+        this.currentStation = currentStation;
+        this.currentVolume = currentVolume;
+        this.stationAmount = variableStationAmount;
+        maxStation = stationAmount - 1;
+    }
+
+    public Radio(int currentStation, int currentVolume) {
+        this.currentStation = currentStation;
+        this.currentVolume = currentVolume;
+    }
+
+    //дефолтный конструктор для тестов, где нам не нужно задавать параметры (например, когда кол-во станций по умолчанию)
+    public Radio() {
+    }
+
+    public int getStationAmount() {
+        return stationAmount;
+    }
 
     public int getCurrentStation() {
         return currentStation;
-    }
-
-    public int getMinStation() {
-        return minStation;
     }
 
     public int getMaxStation() {
         return maxStation;
     }
 
-    public void setNextStation() { //может возвращаться к предыдущей станции
-        int getcurrentStation;
+    public int getMinStation() {
+        return minStation;
+    }
+
+    public int getCurrentVolume() {
+        return currentVolume;
+    }
+
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    public void setNextStation() {
+
         int newNextStation = 0;
         if (currentStation == maxStation) {
             newNextStation = minStation;
@@ -32,8 +71,7 @@ public class Radio {
         this.currentStation = newNextStation;
     }
 
-    public void setPreviousStation() { //может возвращаться к предыдущей станции
-        int getCurrentStation;
+    public void setPreviousStation() {
         int newPreviousStation = 0;
         if (currentStation == minStation) {
             newPreviousStation = maxStation;
@@ -45,41 +83,23 @@ public class Radio {
     }
 
     public void setStation(int newStation) {
-        if (newStation > maxStation) {  //может устанавливать любую от 0 до 9, но в этом пределе
-            return;
-        }
-        if (newStation < minStation) { //если меньше 0, то ставим 0
+        if (newStation > maxStation || newStation < minStation) {
             return;
         }
         this.currentStation = newStation;
     }
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
-    public int getMinVolume() {
-        return minVolume;
-    }
-
-    public int getMaxVolume() {
-        return maxVolume;
-    }
-
     public void setCurrentVolume(int newVolume) {
-        if (newVolume > maxVolume) {  //может устанавливать любую громкость от 0 до 10, но в этом пределе
-            return;
+        if (newVolume > maxVolume) {
+            newVolume = maxVolume;
         }
-        if (newVolume < minVolume) { //если меньше 0, то ставим 0
-            return;
+        if (newVolume < minVolume) {
+            newVolume = minVolume;
         }
         this.currentVolume = newVolume;
     }
 
-    public void setIncreaseVolume() { //можем увеличивать громкость до 10
-        int getCurrentVolume;
-        int getMaxVolume;
-        int getMinVolume;
+    public void setIncreaseVolume() {
         int newVolume = 0;
         if (currentVolume == maxVolume) {
             newVolume = maxVolume;
@@ -90,10 +110,7 @@ public class Radio {
         this.currentVolume = newVolume;
     }
 
-    public void setDecreaseVolume() { //можем уменьшать громкость до 0
-        int getCurrentVolume;
-        int getMaxVolume;
-        int getMinVolume;
+    public void setDecreaseVolume() {
         int newVolume = 0;
         if (currentVolume == minVolume) {
             newVolume = minVolume;
